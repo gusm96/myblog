@@ -18,12 +18,12 @@ public class BoardController {
 
 	@GetMapping("/board/upload")
 	public String getUploadBoard() {
-		return "uploadBoard";
+		return "admin/uploadBoard";
 	}
 
 	@PostMapping("/board/upload")
 	public String postUploadBoard(Board board, Model model) {
 		model.addAttribute("result", service.uploadBoard(board));
-		return "uploadBoardComplete";
+		return "admin/uploadBoardComplete";
 	}
 }
