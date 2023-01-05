@@ -1,5 +1,7 @@
 package com.moyada.myblog.admin.service;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,13 +17,17 @@ public class BoardService {
 	@Autowired
 	private SqlSessionTemplate template;
 
+	public List<Board> getBoardList(int type) {
+		List<Board> boards = null;
+		dao = template.getMapper(BoardDao.class);
+		boards = dao.getAllBoardList(type);
+		return boards;
+	}
+
 	public int uploadBoard(Board board) {
 		int result = 0;
-		// BoardDao 로 결과 값 (작성 성공시 1, 실패시 0 + Error code)
 		dao = template.getMapper(BoardDao.class);
-
 		result = dao.uploadBoard(board);
-
 		return result;
 	}
 }

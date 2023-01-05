@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@  %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,7 +38,7 @@
 </head>
 <body>
 	<div class="container">
-		<form action="POST">
+		<form method="POST">
 			<div class="row">
 				<div class="col-md-1" style="text-align: center; font-weight: bold">
 					제목</div>
@@ -48,7 +47,7 @@
 						required />
 				</div>
 				<div class="col-md-2" style="padding: 0">
-					<select name="adminBoardListIdx" id="adminBoardListIdx"
+					<select name="board_type" id="board_type"
 						class="form-select" aria-label="Default select example" required>
 						<option selected>게시글 유행을 선택하세요.</option>
 						<option value="1">공지사항</option>

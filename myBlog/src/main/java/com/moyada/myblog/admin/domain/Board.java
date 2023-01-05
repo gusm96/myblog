@@ -1,77 +1,22 @@
 package com.moyada.myblog.admin.domain;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@ToString
 public class Board {
 	private int bidx;
+	@Setter
 	private String title;
+	@Setter
 	private String content;
-	private String uploadDate;
-	private String editDate;
+	private String upload_date;
+	@Setter
+	private String edit_date;
 	private int views;
 	private int like;
-	private int boardType;
-
-	public int getBidx() {
-		return bidx;
-	}
-
-	public void setBidx(int bidx) {
-		this.bidx = bidx;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public String getContent() {
-		return content;
-	}
-
-	public void setContent(String content) {
-		this.content = content;
-	}
-
-	public String getUploadDate() {
-		return uploadDate;
-	}
-
-	public void setUploadDate(String uploadDate) {
-		this.uploadDate = uploadDate;
-	}
-
-	public String getEditDate() {
-		return editDate;
-	}
-
-	public void setEditDate(String editDate) {
-		this.editDate = editDate;
-	}
-
-	public int getViews() {
-		return views;
-	}
-
-	public void setViews(int views) {
-		this.views = views;
-	}
-
-	public int getLike() {
-		return like;
-	}
-
-	public void setLike(int like) {
-		this.like = like;
-	}
-
-	public int getBoardType() {
-		return boardType;
-	}
-
-	public void setBoardType(int boardType) {
-		this.boardType = boardType;
-	}
-
+	@Setter
+	private int board_type;
 }

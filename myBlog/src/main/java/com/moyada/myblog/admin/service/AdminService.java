@@ -19,9 +19,7 @@ public class AdminService {
 		int result = 0;
 		Admin admin = null;
 		dao = template.getMapper(AdminDao.class);
-		System.out.println(loginData.getAdmin_id());
 		admin = dao.getAdmin(loginData.getAdmin_id());
-		System.out.println(admin);
 		if (admin != null) {
 			if (admin.getAdmin_pw().equals(loginData.getAdmin_pw())) {
 				result = 1;

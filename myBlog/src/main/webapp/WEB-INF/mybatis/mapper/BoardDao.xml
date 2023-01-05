@@ -7,7 +7,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!--Upload Board -->
 	<insert id="uploadBoard"
 		parameterType="com.moyada.myblog.admin.domain.Board">
-		insert into board(title, content) values
-		(#{title},#{content})
+		insert into board(title, content, board_type) values
+		(#{title},#{content},#{board_type})
 	</insert>
+
+	<!-- Select All Board List -->
+	<select id="getAllBoardList"
+		resultType="com.moyada.myblog.admin.domain.Board">
+		select * from board where board_type = #{board_type}
+	</select>
 </mapper>
