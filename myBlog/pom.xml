@@ -124,7 +124,7 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
 			<version>${org.springframework-version}</version>
-			<!-- <scope>test</scope> -->
+			<scope>test</scope>
 		</dependency>
 		<!-- 데이터베이스 연결 -->
 		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->

@@ -22,9 +22,9 @@ public class AdminController {
 		return "admin/adminPage";
 	}
 
-	@GetMapping("/board/{type}")
-	public String getBoardList(@PathVariable("type") int type, Model model) {
-		model.addAttribute("board", service.getBoardList(type));
+	@GetMapping("/board/{type}/{nowPage}/{cntPerPage}")
+	public String getBoardList(@PathVariable("type") int type, @PathVariable("nowPage") int nowPage,@PathVariable("cntPerPage") int cntPerPage, Model model) {
+		model.addAttribute("board", service.getBoardList(type, nowPage, cntPerPage));
 		model.addAttribute("boardType", type);
 		return "admin/adminPage";
 	}
