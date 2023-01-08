@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.moyada.myblog.admin.dao.BoardDao;
 import com.moyada.myblog.admin.domain.Board;
+import com.moyada.myblog.admin.domain.BoardPage;
 import com.moyada.myblog.admin.domain.Criteria;
 
 @Service
@@ -18,15 +19,24 @@ public class BoardService {
 	@Autowired
 	private SqlSessionTemplate template;
 
-	public List<Board> getBoardList(int type, int nowPage, int cntPerPage) {
+	public BoardPage getBoardList(String type, int nowPage) {
+		BoardPage bp = null;
+		String[] boardType = { "java", "js", "sql" };
+		int boardTypeNum = 0;
+		for (int i = 0; i < boardType.length; i++) {
+			if (boardType[i].equals(type)) {
+				boardTypeNum = i + 1;
+			}
+		}
 		List<Board> boards = null;
 		Criteria cri = null;
 		dao = template.getMapper(BoardDao.class);
 		// board_type에 해당하는 총 게시글의 수
-		int totalCount = dao.coutBoard(type);
-		cri = new Criteria(totalCount, nowPage, cntPerPage);
-		boards = dao.selectBoard(cri, type);
-		return boards;
+		int totalCount = dao.countBoard(boardTypeNum);
+		cri = new Criteria(nowPage, totalCount , boardTypeNum);
+		boards = dao.selectBoard(cri);
+		bp = new BoardPage(cri, boards);
+		return bp;
 	}
 
 	public int uploadBoard(Board board) {

@@ -7,8 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.moyada.myblog.admin.domain.Board;
+import com.moyada.myblog.admin.domain.BoardPage;
 import com.moyada.myblog.admin.service.BoardService;
 
 @Controller
@@ -22,9 +24,11 @@ public class AdminController {
 		return "admin/adminPage";
 	}
 
-	@GetMapping("/board/{type}/{nowPage}/{cntPerPage}")
-	public String getBoardList(@PathVariable("type") int type, @PathVariable("nowPage") int nowPage,@PathVariable("cntPerPage") int cntPerPage, Model model) {
-		model.addAttribute("board", service.getBoardList(type, nowPage, cntPerPage));
+	@GetMapping("/board/{type}")
+	public String getBoardList(@PathVariable("type") String type, @RequestParam("page") int page, Model model) {
+		BoardPage bp = service.getBoardList(type, page);
+		model.addAttribute("board", bp.getBoard());
+		model.addAttribute("pagenum", bp.getCri().getPageNum());
 		model.addAttribute("boardType", type);
 		return "admin/adminPage";
 	}

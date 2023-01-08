@@ -1,5 +1,7 @@
 package com.moyada.myblog.admin.domain;
 
+import java.util.List;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,47 +14,59 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor // 기본 생성자
 public class Criteria {
-	private int nowPage; // 현재 페이지
-	private int startPage; // 시작 페이지
-	private int endPage;// 끝 페이지
-	private int total; // 게시글 총 갯수
-	private int cntPerPage; // 페이지당 글 갯수
-	private int lastPage; // 마지막 페이지
-	private int start; // Query start
-	private int end; // Query end
-	private int cntPage = 15;
 
-	public Criteria(int total, int nowPage, int cntPerPage) {
-		setNowPage(nowPage);
-		setCntPerPage(cntPerPage);
-		setTotal(total);
-		calcLastPage(getTotal(), getCntPerPage());
-		calcStartEndPage(getNowPage(), cntPage);
-		calcStartEnd(getNowPage(), getCntPerPage());
+	private int startNum; // 해당 페이지에 표시할 게시글의 순서?
+	private int totalPage; // 총 페이지 수
+	private int[] pageNum; // 시작 페이지
+	private int boardType;
+	private int viewCnt = 15; // 페이지 당 표시할 게시글의 수
+	private int viewPageCnt = 5; // 표시할 페이지의 수
+
+	public Criteria(int page, int totalBoardCnt, int boardType) {
+		this.startNum = calcStartNum(page);
+		this.totalPage = (int) Math.ceil((double) totalBoardCnt / (double) this.viewCnt);
+		this.pageNum = calcPageNum(page, this.totalPage);
+		this.boardType = boardType;
 	}
 
-	// 제일 마지막 페이지 계산
-	// 게시글 총 갯수 / 페이지당 글 갯수 ex) (int) Math.ceil((double)37 / (double)15) = 3
-	public void calcLastPage(int total, int cntPerPage) {
-		setLastPage((int) Math.ceil((double) total / (double) cntPerPage));
-	}
-
-	// 시작, 끝 페이지 계산
-	// 
-	public void calcStartEndPage(int nowPage, int cntPage) {
-		setEndPage(((int) Math.ceil((double) nowPage / (double) cntPage)) * cntPage);
-		if(getLastPage() < getEndPage()) {
-			setEndPage(getLastPage());
+	public int calcStartNum(int page) {
+		this.startNum = 1;
+		if (page != 1) {
+			for (int i = 1; i < page; i++) {
+				this.startNum += viewCnt;
+			}
 		}
-		setStartPage(getEndPage() - cntPage + 1);
-		if (getStartPage() < 1) {
-			setStartPage(1);
-		}
+		return this.startNum;
 	}
 
-	// DB query 에서 사용할 start, end값 계산
-	public void calcStartEnd(int nowPage, int cntPerPage) {
-		setEnd(nowPage * cntPerPage);
-		setStart(getEnd() - cntPerPage + 1);
+	public int[] calcPageNum(int page, int totalPage) {
+		int[] pageNum = null;
+		int n = page;
+
+		if (totalPage < 5) {
+			pageNum = new int[totalPage];
+			for (int i = 0; i < pageNum.length; i++) {
+				pageNum[i] = i + 1;
+			}
+		} else if (totalPage >= 5) { // 총 페이지 수가 5보다 크거나 같을 때
+			pageNum = new int[this.viewPageCnt];
+			if (page > 3) {
+				for (int i = 0; i < pageNum.length; i++) {
+					if (i < 2) {
+						pageNum[i] = (n + i + 1) - 3;
+					} else if (i > 2) {
+						pageNum[i] = n += 1;
+					} else {
+						pageNum[i] = n;
+					}
+				}
+			} else {
+				for (int i = 0; i < pageNum.length; i++) {
+					pageNum[i] = i + 1;
+				}
+			}
+		}
+
+		return pageNum;
 	}
 }

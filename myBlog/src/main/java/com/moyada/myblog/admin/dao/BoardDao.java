@@ -10,8 +10,8 @@ public interface BoardDao {
 
 	public List<Board> getAllBoardList(int type);
 
-	public int coutBoard(int board_type);
+	public int countBoard(int board_type);
 
-	public List<Board> selectBoard(Criteria cri, int type);
+	public List<Board> selectBoard(Criteria cri);
 
 }

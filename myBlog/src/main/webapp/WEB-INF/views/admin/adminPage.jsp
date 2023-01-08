@@ -8,6 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>관리자 페이지</title>
+<%@ include file="/WEB-INF/views/frame/pageSet.jsp"%>
 <script
 	src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
 	integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
@@ -40,20 +41,23 @@
 								width="16" height="16">
 								<use xlink:href="#speedometer2"></use></svg> 게시글 작성
 					</a></li>
-					<li><a href="${pageContext.request.contextPath}/admin/board/1"
+					<li><a
+						href="${pageContext.request.contextPath}/admin/board/java?page=1"
 						class="nav-link text-white"> <svg class="bi pe-none me-2"
 								width="16" height="16">
-								<use xlink:href="#table"></use></svg> 게시판 1
+								<use xlink:href="#table"></use></svg> Java
 					</a></li>
-					<li><a href="${pageContext.request.contextPath}/admin/board/2"
+					<li><a
+						href="${pageContext.request.contextPath}/admin/board/js?page=1"
 						class="nav-link text-white"> <svg class="bi pe-none me-2"
 								width="16" height="16">
-								<use xlink:href="#grid"></use></svg> 게시판 2
+								<use xlink:href="#grid"></use></svg> JavaScript
 					</a></li>
-					<li><a href="${pageContext.request.contextPath}/admin/board/3"
+					<li><a
+						href="${pageContext.request.contextPath}/admin/board/sql?page=1"
 						class="nav-link text-white"> <svg class="bi pe-none me-2"
 								width="16" height="16">
-								<use xlink:href="#people-circle"></use></svg> 게시판 3
+								<use xlink:href="#people-circle"></use></svg> Sql
 					</a></li>
 				</ul>
 				<hr>
@@ -79,12 +83,7 @@
 		<c:if test="${not empty board}">
 			<div id="board_list">
 				<table>
-					<c:if test="${boardtype == 1}">
-						<caption>공지사항</caption>
-					</c:if>
-					<c:if test="${boardtype == 2}">
-						<caption>이벤트</caption>
-					</c:if>
+					<caption>${boardType}</caption>
 					<thead>
 						<th>번호</th>
 						<th>제목</th>
@@ -105,6 +104,26 @@
 						</c:forEach>
 					</tbody>
 				</table>
+				<div id="pageContainer">
+					<div id="firstBtn">
+						<button>처음</button>
+					</div>
+					<div id="backBtn">
+						<button>이전</button>
+					</div>
+					<div id="pageNum">
+						<c:forEach items="${pagenum}" var="page">
+							<a
+								href="${pageContext.request.contextPath}/admin/board/${boardType}?page=${page}">${page}</a>
+						</c:forEach>
+					</div>
+					<div id="nextBtn">
+						<button>다음</button>
+					</div>
+					<div id="lastBtn">
+						<button>끝</button>
+					</div>
+				</div>
 			</div>
 		</c:if>
 		<c:if test="${empty board}">
@@ -113,5 +132,11 @@
 			</div>
 		</c:if>
 	</main>
+	<script>
+		
+	<%@ include file="/resources/js/pageBtn.js" %>
+		
+	</script>
 </body>
+
 </html>

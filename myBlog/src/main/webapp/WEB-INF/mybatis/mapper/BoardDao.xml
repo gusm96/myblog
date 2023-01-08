@@ -24,7 +24,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- Paging -->
 	<select id="selectBoard"
 		resultType="com.moyada.myblog.admin.domain.Board">
-		select * from board where board_type = #{param2} order by
-		upload_date desc limit #{start},#{end}
+		select * from board where board_type = #{boardType} order by
+		upload_date desc limit #{startNum},#{viewCnt}
 	</select>
 </mapper>

@@ -4,7 +4,6 @@
 <c:if test="${result > 0}">
 	<script>
 		alert("관리자 모드 로그인에 성공하였습니다.");
-		location.href = "${pageContext.request.contextPath}";
 	</script>
 </c:if>
 <c:if test="${result == 0 }">
