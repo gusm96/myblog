@@ -28,7 +28,7 @@ public class AdminController {
 	public String getBoardList(@PathVariable("type") String type, @RequestParam("page") int page, Model model) {
 		BoardPage bp = service.getBoardList(type, page);
 		model.addAttribute("board", bp.getBoard());
-		model.addAttribute("pagenum", bp.getCri().getPageNum());
+		model.addAttribute("page", bp.getCri());
 		model.addAttribute("boardType", type);
 		return "admin/adminPage";
 	}
