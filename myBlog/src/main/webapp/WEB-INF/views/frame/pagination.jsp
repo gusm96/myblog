@@ -12,9 +12,9 @@ uri="http://java.sun.com/jsp/jstl/core"%>
         if(totalBoardCnt <= viewCnt) return;
         var pageGroup = Math.ceil(nowPage/ viewPageCnt);
 
-        var lastPage = pageGroup * viewCnt;
+        var lastPage = pageGroup * viewPageCnt;
         if(lastPage > totalPage) lastPage = totalPage;
-        var firstPage = lastPage - (10 - 1) <= 0 ? 1 : lastPage - (10 - 1);
+        var firstPage = lastPage - (viewPageCnt - 1) <= 0 ? 1 : lastPage - (viewPageCnt - 1);
         var pageContainer = document.createDocumentFragment();
         var allpreli = document.createElement("li");
         allpreli.insertAdjacentHTML("beforeend", `<button id="firstBtn">&lt;&lt;</button>`);

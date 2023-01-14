@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<link rel="canonical"
+	href="https://getbootstrap.com/docs/5.3/examples/sidebars/">
+	<link rel="apple-touch-icon" href="/docs/5.3/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+	<link rel="icon" href="/docs/5.3/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+	<link rel="icon" href="/docs/5.3/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+	<link rel="manifest" href="/docs/5.3/assets/img/favicons/manifest.json">
+	<link rel="mask-icon" href="/docs/5.3/assets/img/favicons/safari-pinned-tab.svg" color="#712cf9">
+	
 <div id="nav_container">
 	<div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark"
 		style="width: 280px;">
@@ -55,7 +63,8 @@
 				<li><a class="dropdown-item" href="#">Settings</a></li>
 				<li><a class="dropdown-item" href="#">Profile</a></li>
 				<li><hr class="dropdown-divider"></li>
-				<li><a class="dropdown-item" href="#">Sign out</a></li>
+				<li><a class="dropdown-item"
+					href="${pageContext.request.contextPath}/admin/logout">Sign out</a></li>
 			</ul>
 		</div>
 	</div>

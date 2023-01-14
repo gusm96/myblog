@@ -1,5 +1,7 @@
 package com.moyada.myblog.admin.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,5 +45,10 @@ public class AdminController {
 		model.addAttribute("result", service.uploadBoard(board));
 		return "admin/uploadBoardComplete";
 	}
-
+	
+	@GetMapping("/logout")
+	public String adminLogout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/";
+	}
 }

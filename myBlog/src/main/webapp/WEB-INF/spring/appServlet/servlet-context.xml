@@ -20,6 +20,7 @@
 	<resources location="/css/" mapping="/css/**" />
 	<resources location="/js/" mapping="/js/**" />
 	<resources location="/images/" mapping="/images/**" />
+	<resources location="/getboot/" mapping="getboot/**"/>
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
 		in the /WEB-INF/views directory -->

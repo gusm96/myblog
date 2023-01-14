@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.moyada.myblog.admin.dao.AdminDao;
 import com.moyada.myblog.admin.domain.Admin;
+import com.moyada.myblog.admin.exception.LoginInvalidException;
 
 @Service
 public class AdminService {
@@ -15,19 +16,20 @@ public class AdminService {
 	@Autowired
 	private SqlSessionTemplate template;
 
-	public int adminLogin(Admin loginData, HttpSession session) {
-		int result = 0;
+	public String adminLogin(Admin loginData, HttpSession session)throws LoginInvalidException {
+		String url = "";
 		Admin admin = null;
 		dao = template.getMapper(AdminDao.class);
 		admin = dao.getAdmin(loginData.getAdmin_id());
-		if (admin != null) {
-			if (admin.getAdmin_pw().equals(loginData.getAdmin_pw())) {
-				result = 1;
-				session.setAttribute("admin", admin);
-			}
-		} else {
-			result = 0;
+		if (admin == null) {
+			throw new LoginInvalidException("아이디 또는 비밀번호가 틀립니다.");
+		} else if (!loginData.getAdmin_pw().contentEquals(admin.getAdmin_pw())) {
+			throw new LoginInvalidException("아이디 또는 비밀번호가 틀립니다.");
 		}
-		return result;
+		
+		session.setAttribute("admin", admin);
+		url = "redirect:/admin";
+		
+		return url;
 	}
 }
