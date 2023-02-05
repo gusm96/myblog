@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 <title>관리자 페이지</title>
 <%@ include file="/WEB-INF/views/frame/pageSet.jsp"%>
-<%@ include file="/WEB-INF/views/frame/pagination.jsp"%>
+<%-- <%@ include file="/WEB-INF/views/frame/pagination.jsp"%> --%>
 </head>
 <body>
 	<div class="container">

@@ -21,10 +21,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*) from board
 		where board_type = #{board_type}
 	</select>
-	<!-- Paging -->
+	<!-- Pagination -->
 	<select id="selectBoard"
 		resultType="com.moyada.myblog.admin.domain.Board">
 		select * from board where board_type = #{boardType} order by
-		upload_date desc limit #{startNum},#{viewCnt}
+		upload_date desc limit #{startPage},#{BOARD_NUM}
 	</select>
 </mapper>
