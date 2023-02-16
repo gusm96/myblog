@@ -7,9 +7,8 @@
 </head>
 <body>
 	<h1>Hello world!</h1>
-
 	<h3>
-		<a href="${pageContext.request.contextPath}/admin">관리자 페이지</a>
+		<a href="${pageContext.request.contextPath}/management">관리자 페이지</a>
 	</h3>
 </body>
 </html>

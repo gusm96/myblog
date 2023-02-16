@@ -23,7 +23,7 @@ public class AdminLoginInterceptor extends HandlerInterceptorAdapter {
 		// 관리자 로그인 페이지로 이동 : referer 파라미터로 요청했던 URL 전달
 		String url = request.getRequestURL().toString();
 
-		response.sendRedirect(request.getContextPath() + "/login/admin?referer=" + request.getRequestURL().toString());
+		response.sendRedirect(request.getContextPath() + "/login/admin?referer=" + url);
 
 		return false;
 	}

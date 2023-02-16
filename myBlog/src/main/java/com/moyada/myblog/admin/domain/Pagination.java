@@ -1,21 +1,19 @@
 package com.moyada.myblog.admin.domain;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 @Getter
 @Setter
 @ToString
-@NoArgsConstructor
 public class Pagination {
-	static private int PAGE_NUM = 10; // 한번에 표시할 최대 페이지 수
-	static private int BOARD_NUM = 15; // 한번에 표시할 최대 게시글 수
+	final private int PAGE_NUM = 10; // 한번에 표시할 최대 페이지 수
+	final private int BOARD_NUM = 15; // 한번에 표시할 최대 게시글 수
 	private int totalBoard; // 총 게시글 수
 	private int totalPage; // 총 페이지 수
 	private int startPage; // 시작 페이지
-	private int nowPage; // 현재 페이지
+	private int nowPage;// 현재 페이지
 	private int boardType; // 게시글 종류
 
 	public Pagination(int nowPage, int totalBoard, int boardType) {
@@ -26,6 +24,7 @@ public class Pagination {
 		this.startPage = calStartPage(nowPage);
 	}
 
+	// 해당 페이지 게시글 시작
 	public int calStartPage(int nowPage) {
 		this.startPage = 1;
 		if (nowPage != 1) {

@@ -1,7 +1,5 @@
 package com.moyada.myblog.admin.controller;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,21 +13,21 @@ import com.moyada.myblog.admin.domain.Board;
 import com.moyada.myblog.admin.service.BoardService;
 
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("/management")
 public class AdminController {
 	@Autowired
 	BoardService service;
 
 	@GetMapping
-	public String getAdminPage() {
-		return "admin/adminPage";
+	public String getManagement() {
+		return "admin/management";
 	}
 
 	@GetMapping("/board/{type}")
-	public String getBoardList(@PathVariable("type") String type, @RequestParam("page") int page, Model model) {
+	public String getBoardList(@PathVariable("type") String type,
+			@RequestParam(value = "page", defaultValue = "1") int page, Model model) {
 		model.addAttribute("board", service.getBoardList(type, page));
-		model.addAttribute("boardType", type);
-		return "admin/adminPage";
+		return "admin/management";
 	}
 
 	@GetMapping("/board/upload")
@@ -43,9 +41,4 @@ public class AdminController {
 		return "admin/uploadBoardComplete";
 	}
 
-	@GetMapping("/logout")
-	public String adminLogout(HttpSession session) {
-		session.invalidate();
-		return "redirect:/";
-	}
 }

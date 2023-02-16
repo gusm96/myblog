@@ -19,7 +19,7 @@ public class BoardService {
 	private SqlSessionTemplate template;
 
 	public List<Board> getBoardList(String type, int nowPage) {
-		List<Board>board = null;
+		List<Board> board = null;
 		String[] boardType = { "java", "js", "sql" };
 		int boardTypeNum = 0;
 		// 게시글 종류 확인
@@ -31,7 +31,7 @@ public class BoardService {
 		dao = template.getMapper(BoardDao.class);
 		// board_type에 해당하는 총 게시글의 수
 		int totalBoad = dao.countBoard(boardTypeNum);
-		Pagination pn = new Pagination(nowPage , totalBoad, boardTypeNum);
+		Pagination pn = new Pagination(nowPage, totalBoad, boardTypeNum);
 		board = dao.selectBoard(pn);
 		return board;
 	}

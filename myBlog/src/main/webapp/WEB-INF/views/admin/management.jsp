@@ -9,20 +9,17 @@
 <meta charset="UTF-8">
 <title>관리자 페이지</title>
 <%@ include file="/WEB-INF/views/frame/pageSet.jsp"%>
-<%-- <%@ include file="/WEB-INF/views/frame/pagination.jsp"%> --%>
 </head>
 <body>
+
 	<div class="container">
 		<div class="row">
-			<div class="col">
-				<%@ include file="/WEB-INF/views/frame/navContainer.jsp"%>
-			</div>
-			<div class="col">
-				<!-- Controller 에서 Board를 담은 Model을 보내 주었다면 게시글 리스트 표시  -->
+			<div class="col-md-4"><%@ include
+					file="/WEB-INF/views/frame/sidebar.jsp"%></div>
+			<div class="col-md-8">
 				<c:if test="${not empty board}">
 					<div id="board_list">
 						<table>
-							<caption>${boardType}</caption>
 							<thead>
 								<th>번호</th>
 								<th>제목</th>
