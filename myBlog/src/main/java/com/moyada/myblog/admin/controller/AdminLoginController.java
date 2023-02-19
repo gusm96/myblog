@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.moyada.myblog.admin.domain.Admin;
+import com.moyada.myblog.admin.domain.AdminDTO;
 import com.moyada.myblog.admin.exception.LoginInvalidException;
 import com.moyada.myblog.admin.service.AdminService;
 
@@ -27,7 +27,7 @@ public class AdminLoginController {
 	}
 
 	@PostMapping("/login/admin")
-	public String postAdminLogin(Admin loginData, HttpSession session)throws LoginInvalidException {
+	public String postAdminLogin(AdminDTO loginData, HttpSession session)throws LoginInvalidException {
 		return service.adminLogin(loginData, session);
 	}
 	@ExceptionHandler(LoginInvalidException.class)

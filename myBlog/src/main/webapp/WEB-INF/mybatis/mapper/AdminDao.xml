@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.moyada.myblog.admin.dao.AdminDao">
 	<!--Admin Login -->
-	<select id="getAdmin" resultType="com.moyada.myblog.admin.domain.Admin">
+	<select id="getAdmin" resultType="com.moyada.myblog.admin.domain.AdminDTO">
 		select * from admin where admin_id=#{admin_id} 
 	</select>
 </mapper>

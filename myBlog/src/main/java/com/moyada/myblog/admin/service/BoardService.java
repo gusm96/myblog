@@ -1,14 +1,13 @@
 package com.moyada.myblog.admin.service;
 
-import java.util.List;
-
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.moyada.myblog.admin.dao.BoardDao;
-import com.moyada.myblog.admin.domain.Board;
-import com.moyada.myblog.admin.domain.Pagination;
+import com.moyada.myblog.admin.domain.BoardDTO;
+import com.moyada.myblog.admin.domain.BoardListDTO;
+import com.moyada.myblog.admin.domain.PaginationVO;
 
 @Service
 public class BoardService {
@@ -18,8 +17,8 @@ public class BoardService {
 	@Autowired
 	private SqlSessionTemplate template;
 
-	public List<Board> getBoardList(String type, int nowPage) {
-		List<Board> board = null;
+	public BoardListDTO getBoardList(String type, int nowPage) {
+		BoardListDTO board = new BoardListDTO();
 		String[] boardType = { "java", "js", "sql" };
 		int boardTypeNum = 0;
 		// 게시글 종류 확인
@@ -30,13 +29,14 @@ public class BoardService {
 		}
 		dao = template.getMapper(BoardDao.class);
 		// board_type에 해당하는 총 게시글의 수
-		int totalBoad = dao.countBoard(boardTypeNum);
-		Pagination pn = new Pagination(nowPage, totalBoad, boardTypeNum);
-		board = dao.selectBoard(pn);
+		int totalBoard = dao.countBoard(boardTypeNum);
+		PaginationVO pn = new PaginationVO(nowPage, totalBoard, boardTypeNum);
+		board.setPage(pn);
+		board.setList(dao.selectBoard(board.getPage()));
 		return board;
 	}
 
-	public int uploadBoard(Board board) {
+	public int uploadBoard(BoardDTO board) {
 		int result = 0;
 		dao = template.getMapper(BoardDao.class);
 		result = dao.uploadBoard(board);

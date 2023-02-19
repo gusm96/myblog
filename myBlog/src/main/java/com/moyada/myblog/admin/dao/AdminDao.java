@@ -1,8 +1,8 @@
 package com.moyada.myblog.admin.dao;
 
-import com.moyada.myblog.admin.domain.Admin;
+import com.moyada.myblog.admin.domain.AdminDTO;
 
 public interface AdminDao {
 
-	public Admin getAdmin(String id);
+	public AdminDTO getAdmin(String id);
 }

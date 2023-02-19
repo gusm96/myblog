@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.moyada.myblog.admin.dao.AdminDao;
-import com.moyada.myblog.admin.domain.Admin;
+import com.moyada.myblog.admin.domain.AdminDTO;
 import com.moyada.myblog.admin.exception.LoginInvalidException;
 
 @Service
@@ -16,9 +16,9 @@ public class AdminService {
 	@Autowired
 	private SqlSessionTemplate template;
 
-	public String adminLogin(Admin loginData, HttpSession session)throws LoginInvalidException {
+	public String adminLogin(AdminDTO loginData, HttpSession session)throws LoginInvalidException {
 		String url = "";
-		Admin admin = null;
+		AdminDTO admin = null;
 		dao = template.getMapper(AdminDao.class);
 		admin = dao.getAdmin(loginData.getAdmin_id());
 		if (admin == null) {

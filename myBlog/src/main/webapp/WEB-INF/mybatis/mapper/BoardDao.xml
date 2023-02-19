@@ -6,25 +6,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.moyada.myblog.admin.dao.BoardDao">
 	<!--Upload Board -->
 	<insert id="uploadBoard"
-		parameterType="com.moyada.myblog.admin.domain.Board">
+		parameterType="com.moyada.myblog.admin.domain.BoardDTO">
 		insert into board(title, content, board_type) values
 		(#{title},#{content},#{board_type})
 	</insert>
-
-	<!-- Select All Board List -->
-	<select id="getAllBoardList"
-		resultType="com.moyada.myblog.admin.domain.Board">
-		select * from board where board_type = #{board_type}
-	</select>
+	
 	<!-- 총 게시글 갯수 출력 -->
 	<select id="countBoard" resultType="int">
 		select count(*) from board
 		where board_type = #{board_type}
 	</select>
+	
 	<!-- Pagination -->
 	<select id="selectBoard"
-		resultType="com.moyada.myblog.admin.domain.Board">
+		resultType="com.moyada.myblog.admin.domain.BoardDTO">
 		select * from board where board_type = #{boardType} order by
-		upload_date desc limit #{startPage},#{BOARD_NUM}
+		upload_date desc limit #{boardCnt},#{BOARD_NUM}
 	</select>
 </mapper>

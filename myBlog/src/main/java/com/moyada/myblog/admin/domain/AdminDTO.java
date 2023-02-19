@@ -7,7 +7,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class Admin {
+public class AdminDTO {
 	private int aidx;
 	private String admin_id;
 	private String admin_pw;

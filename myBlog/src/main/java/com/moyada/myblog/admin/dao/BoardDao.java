@@ -2,16 +2,14 @@ package com.moyada.myblog.admin.dao;
 
 import java.util.List;
 
-import com.moyada.myblog.admin.domain.Board;
-import com.moyada.myblog.admin.domain.Pagination;
+import com.moyada.myblog.admin.domain.BoardDTO;
+import com.moyada.myblog.admin.domain.PaginationVO;
 
 public interface BoardDao {
-	public int uploadBoard(Board board);
-
-	public List<Board> getAllBoardList(int type);
+	public int uploadBoard(BoardDTO board);
 
 	public int countBoard(int board_type);
 
-	public List<Board> selectBoard(Pagination pn);
+	public List<BoardDTO> selectBoard(PaginationVO pn);
 
 }

@@ -10,23 +10,25 @@
 <title>관리자 페이지</title>
 <%@ include file="/WEB-INF/views/frame/pageSet.jsp"%>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 
-	<div class="container">
+	<div class="container-fluid">
 		<div class="row">
-			<div class="col-md-4"><%@ include
+			<div class="col-md-3"><%@ include
 					file="/WEB-INF/views/frame/sidebar.jsp"%></div>
-			<div class="col-md-8">
+			<div class="col-md-9">
 				<c:if test="${not empty board}">
 					<div id="board_list">
-						<table>
+						<table class="table table-striped">
 							<thead>
-								<th>번호</th>
-								<th>제목</th>
-								<th>작성일</th>
+								<tr>
+									<th>번호</th>
+									<th>제목</th>
+									<th>작성일</th>
+								</tr>
 							</thead>
-							<tbody>
-								<c:forEach items="${board}" var="b">
+							<tbody class="">
+								<c:forEach items="${board.list}" var="b">
 									<fmt:parseDate value="${b.upload_date}" var="parseDateValue"
 										pattern="yyyy-MM-dd HH:mm:ss" />
 									<fmt:formatDate value="${parseDateValue}" var="uploadDate"
@@ -40,7 +42,10 @@
 								</c:forEach>
 							</tbody>
 						</table>
-						<div id="pageContainer"></div>
+						<div class="row">
+						
+							<%@include file="/WEB-INF/views/frame/pagination.jsp"%>
+						</div>
 					</div>
 				</c:if>
 				<c:if test="${empty board}">
@@ -50,6 +55,9 @@
 				</c:if>
 			</div>
 		</div>
+		<%-- <div class="row">
+			<%@include file="/WEB-INF/views/frame/footer.jsp" %>
+		</div> --%>
 	</div>
 </body>
 

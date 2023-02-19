@@ -1,78 +1,65 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%> <%@ taglib prefix="c"
 uri="http://java.sun.com/jsp/jstl/core"%>
-<c:if test="${not empty page}">
+<c:if test="${not empty board.page}">
+  <div id="pageContainer" class="container bg-primary center-block" style="width:600px"></div>
   <script>
-    $(document).ready(function (nowPage) {
-     var totalBoardCnt = ${page.totalBoardCnt};
-     var totalPage = ${page.totalPage};
-     var nowPage = ${page.nowPage};
-     var viewCnt = ${page.viewCnt};
-     var viewPageCnt = ${page.viewPageCnt};
-        if(totalBoardCnt <= viewCnt) return;
-        var pageGroup = Math.ceil(nowPage/ viewPageCnt);
-
-        var lastPage = pageGroup * viewPageCnt;
-        if(lastPage > totalPage) lastPage = totalPage;
-        var firstPage = lastPage - (viewPageCnt - 1) <= 0 ? 1 : lastPage - (viewPageCnt - 1);
-        var pageContainer = document.createDocumentFragment();
-        var allpreli = document.createElement("li");
-        allpreli.insertAdjacentHTML("beforeend", `<button id="firstBtn">&lt;&lt;</button>`);
-        var preli = document.createElement("li");
-        preli.insertAdjacentHTML("beforeend", `<button id="backBtn">&lt;</button>`);
-        pageContainer.appendChild(allpreli);
-        pageContainer.appendChild(preli);
-        for (let i = firstPage; i <= lastPage; i++){
-        	var li = document.createElement("li");
-            li.insertAdjacentHTML("beforeend", "<a href='${pageContext.request.contextPath}/admin/board/${boardType}?page="+i+"'>"+i+"</a>");
-            pageContainer.appendChild(li);
-        }
-
-        if (lastPage <= totalPage){
-        	var allendli = document.createElement('li');
-    	  allendli.insertAdjacentHTML("beforeend", `<button id='lastBtn'>&gt;&gt;</button>`);
-
-    	  var endli = document.createElement('li');
-    	  endli.insertAdjacentHTML("beforeend", `<button id='nextBtn'>&gt;</button>`);
-
-    	  pageContainer.appendChild(endli);
-    	  pageContainer.appendChild(allendli);
-        }
-        document.getElementById('pageContainer').appendChild(pageContainer);
-        $("#firstBtn").click(function (e) {
-            e.preventDefault();
-            location.href =
-                "${pageContext.request.contextPath}/admin/board/${boardType}?page=1";
-        });
-
-            $("#nextBtn").click(function (e) {
-            e.preventDefault();
-
-            const pageNum = ${page.nowPage} + 1;
-            if(pageNum > totalPage){
-                alert("마지막 페이지 입니다!!")
-                return;
-            }
-            location.href =
-                "${pageContext.request.contextPath}/admin/board/${boardType}?page=" +
-                pageNum;
-        });
-
-        $("#backBtn").click(function (e) {
-            e.preventDefault();
-            const pageNum = ${page.nowPage} - 1;
-            if(pageNum <= 1){
-                alert("첫 번째 페이지 입니다!!")
-                return;
-            }
-            location.href =
-                "${pageContext.request.contextPath}/admin/board/${boardType}?page=" +
-                pageNum;
-        });
-        $("#lastBtn").click(function (e) {
-            e.preventDefault();
-            location.href="${pageContext.request.contextPath}/admin/board/${boardType}?page="+lastPage;
-        });
+    var nowPage = new URL(location.href).searchParams.get("page");
+    $(document).ready(function () {
+      getPagination(nowPage);
+      $(".firstPageBtn").click(function () {
+    	  var params =new URLSearchParams(location.search);
+    	  params.set("page", 1);
+ 		location.href = location.pathname + "?" +params.toString();
+      });
+      $(".prevBtn").click(function () {
+    	  var params =new URLSearchParams(location.search);
+    	  params.set("page", parseInt(nowPage) -1);
+ 		location.href = location.pathname + "?" +params.toString();
+      });
+      
+      $(".nextBtn").click(function () {
+    	  var params =new URLSearchParams(location.search);
+    	  params.set("page", parseInt(nowPage) +1);
+ 		location.href = location.pathname + "?" +params.toString();
+      });
+      $(".lastPageBtn").click(function () {
+    	  var params =new URLSearchParams(location.search);
+    	  params.set("page", "${board.page.totalPage}");
+ 		location.href = location.pathname + "?" +params.toString();
+      });
     });
+    function getPagination(nowPage) {
+      var totalPage = "${board.page.totalPage	}";
+      var pageContainer = document.createElement("ul");
+      pageContainer.className += "pagination";
+      var pageGroup = Math.ceil(nowPage / 10);
+      var firstPage = pageGroup * 10 - 9;
+      var lastPage = totalPage <= 10 ? totalPage : pageGroup * 10;
+      if (lastPage > totalPage) {
+        lastPage = totalPage;
+      }
+      if (nowPage > 1) {
+        pageContainer.innerHTML +=
+          "<li class='page-item firstPageBtn'><a class='page-link' href='#'>처음</a></li>";
+        pageContainer.innerHTML +=
+          "<li class='page-item prevBtn'><a class='page-link' href='#'>이전</a></li>";
+      }
+      for (var i = firstPage; i <= lastPage; i++) {
+        pageContainer.innerHTML +=
+          "<li class='page-item'><a class ='page-link' href='#' id='" +
+          i +
+          "'>" +
+          i +
+          "</a></li>";
+      }
+      if (nowPage != totalPage && totalPage != 1) {
+        pageContainer.innerHTML +=
+          "<li class='page-item nextBtn'><a class='page-link' href='#'>다음</a></li>";
+        pageContainer.innerHTML +=
+          "<li class='page-item lastPageBtn'><a class='page-link' href='#'>끝</a></li>";
+      }
+      document.getElementById("pageContainer").appendChild(pageContainer);
+    }
   </script>
 </c:if>

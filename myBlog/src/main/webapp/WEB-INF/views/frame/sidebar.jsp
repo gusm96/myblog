@@ -43,12 +43,13 @@
 						class="navbar-brand text-white text-center d-block mx-auto py-3 mb-4 bottom-border">Management</span>
 					<ul class="navbar-nav flex-column mt-4">
 						<li class="nav-item"><a
-							href="${pageContext.request.contextPath}/management/board/java?page=1"
-							class="nav-link text-white p-3 mb-2 sidebar-link">게시글 작성</a></li>
+							href="${pageContext.request.contextPath}/management/board/upload"
+							class="nav-link text-white p-3 mb-2 sidebar-link"><i
+								class="fas fa-file-alt text-white fa-lg mr-3"></i>게시글 작성</a></li>
 						<li class="nav-item"><a
 							href="${pageContext.request.contextPath}/management/board/java?page=1"
 							class="nav-link text-white p-3 mb-2 sidebar-link"><i
-								class="fas fa-file-alt text-white fa-lg mr-3"></i>Java</a></li>
+								class="fa-brands fa-java text-white fa-lg mr-3"></i>Java</a></li>
 						<li class="nav-item"><a
 							href="${pageContext.request.contextPath}/management/board/js?page=1"
 							class="nav-link text-white p-3 mb-2 sidebar-link"><i

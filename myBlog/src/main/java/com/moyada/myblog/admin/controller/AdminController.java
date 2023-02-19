@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.moyada.myblog.admin.domain.Board;
+import com.moyada.myblog.admin.domain.BoardDTO;
 import com.moyada.myblog.admin.service.BoardService;
 
 @Controller
@@ -36,7 +36,7 @@ public class AdminController {
 	}
 
 	@PostMapping("/board/upload")
-	public String postUploadBoard(Board board, Model model) {
+	public String postUploadBoard(BoardDTO board, Model model) {
 		model.addAttribute("result", service.uploadBoard(board));
 		return "admin/uploadBoardComplete";
 	}
