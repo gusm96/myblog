@@ -41,4 +41,10 @@ public class AdminController {
 		return "admin/uploadBoardComplete";
 	}
 
+	@GetMapping("/board/{type}/{bidx}")
+	public String getBoardDetail(@PathVariable("type") int type, @PathVariable("bidx") int bidx, Model model) {
+		model.addAttribute("board", service.getBoardDetail(bidx));
+		return "board/boardDetail";
+	}
+
 }

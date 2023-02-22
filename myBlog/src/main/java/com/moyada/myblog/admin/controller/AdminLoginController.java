@@ -34,9 +34,9 @@ public class AdminLoginController {
 	public String loginFail(LoginInvalidException e) {
 		return "error/loginFail";
 	}
-	@GetMapping("/logout")
+	@GetMapping("/logout/admin")
 	public String adminLogout(HttpSession session) {
 		session.invalidate();
-		return "redirect:/";
+		return "admin/adminLogout";
 	}
 }

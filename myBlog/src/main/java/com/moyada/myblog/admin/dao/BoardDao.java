@@ -12,4 +12,6 @@ public interface BoardDao {
 
 	public List<BoardDTO> selectBoard(PaginationVO pn);
 
+	public BoardDTO getBoard(int bidx);
+
 }

@@ -17,7 +17,7 @@
 			<div class="col-md-3"><%@ include
 					file="/WEB-INF/views/frame/sidebar.jsp"%></div>
 			<div class="col-md-9">
-				<c:if test="${not empty board}">
+				<c:if test="${not empty board.list}">
 					<div id="board_list">
 						<table class="table table-striped">
 							<thead>
@@ -36,7 +36,7 @@
 									<tr>
 										<td>${b.bidx}</td>
 										<td><a
-											href="${pageContext.request.contextPath}/board/${b.bidx}">${b.title }</a></td>
+											href="${pageContext.request.contextPath}/board/${b.board_type}/${b.bidx}">${b.title }</a></td>
 										<td>${uploadDate}</td>
 									</tr>
 								</c:forEach>
@@ -48,16 +48,13 @@
 						</div>
 					</div>
 				</c:if>
-				<c:if test="${empty board}">
+				<c:if test="${empty board.list}">
 					<div id="board_list">
 						<h1>게시글이 존재하지 않습니다.</h1>
 					</div>
 				</c:if>
 			</div>
 		</div>
-		<%-- <div class="row">
-			<%@include file="/WEB-INF/views/frame/footer.jsp" %>
-		</div> --%>
 	</div>
 </body>
 

@@ -1,8 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%> <%@ taglib prefix="c"
 uri="http://java.sun.com/jsp/jstl/core"%>
+<style>
+	.page-item{
+			cursor: pointer;
+	}
+</style>
 <c:if test="${not empty board.page}">
-  <div id="pageContainer" class="container bg-primary center-block" style="width:600px"></div>
+  <div id="pageContainer" class="container center-block" style="width:600px"></div>
   <script>
     var nowPage = new URL(location.href).searchParams.get("page");
     $(document).ready(function () {
@@ -28,9 +33,14 @@ uri="http://java.sun.com/jsp/jstl/core"%>
     	  params.set("page", "${board.page.totalPage}");
  		location.href = location.pathname + "?" +params.toString();
       });
+      $(".page-num").click(function (e) {
+    	  var params =new URLSearchParams(location.search);
+    	  params.set("page", $(this).attr("id"));
+ 		location.href = location.pathname + "?" +params.toString();
+      });
     });
     function getPagination(nowPage) {
-      var totalPage = "${board.page.totalPage	}";
+      var totalPage = "${board.page.totalPage}";
       var pageContainer = document.createElement("ul");
       pageContainer.className += "pagination";
       var pageGroup = Math.ceil(nowPage / 10);
@@ -41,13 +51,13 @@ uri="http://java.sun.com/jsp/jstl/core"%>
       }
       if (nowPage > 1) {
         pageContainer.innerHTML +=
-          "<li class='page-item firstPageBtn'><a class='page-link' href='#'>처음</a></li>";
+          "<li class='page-item firstPageBtn'><a class='page-link'>처음</a></li>";
         pageContainer.innerHTML +=
-          "<li class='page-item prevBtn'><a class='page-link' href='#'>이전</a></li>";
+          "<li class='page-item prevBtn'><a class='page-link'>이전</a></li>";
       }
       for (var i = firstPage; i <= lastPage; i++) {
         pageContainer.innerHTML +=
-          "<li class='page-item'><a class ='page-link' href='#' id='" +
+          "<li class='page-item'><a class ='page-link page-num'  id='" +
           i +
           "'>" +
           i +
@@ -55,9 +65,9 @@ uri="http://java.sun.com/jsp/jstl/core"%>
       }
       if (nowPage != totalPage && totalPage != 1) {
         pageContainer.innerHTML +=
-          "<li class='page-item nextBtn'><a class='page-link' href='#'>다음</a></li>";
+          "<li class='page-item nextBtn'><a class='page-link' >다음</a></li>";
         pageContainer.innerHTML +=
-          "<li class='page-item lastPageBtn'><a class='page-link' href='#'>끝</a></li>";
+          "<li class='page-item lastPageBtn'><a class='page-link' >끝</a></li>";
       }
       document.getElementById("pageContainer").appendChild(pageContainer);
     }

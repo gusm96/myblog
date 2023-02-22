@@ -42,4 +42,13 @@ public class BoardService {
 		result = dao.uploadBoard(board);
 		return result;
 	}
+
+	public BoardDTO getBoardDetail(int bidx) {
+		BoardDTO board = null;
+		dao = template.getMapper(BoardDao.class);
+		
+		board = dao.getBoard(bidx);
+		
+		return board;
+	}
 }

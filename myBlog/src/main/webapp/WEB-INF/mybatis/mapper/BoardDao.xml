@@ -23,4 +23,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from board where board_type = #{boardType} order by
 		upload_date desc limit #{boardCnt},#{BOARD_NUM}
 	</select>
+	
+	<!-- Read Board -->
+	<select id="getBoard"
+		resultType="com.moyada.myblog.admin.domain.BoardDTO">
+		select * from board where bidx = #{bidx}
+		</select>
 </mapper>

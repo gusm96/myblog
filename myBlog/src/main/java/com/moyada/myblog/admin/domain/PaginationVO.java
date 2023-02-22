@@ -26,7 +26,7 @@ public class PaginationVO {
 
 	// 해당 페이지 게시글 시작
 	public int calStartPage(int nowPage) {
-		this.boardCnt = 1;
+		this.boardCnt = 0;
 		if (nowPage != 1) {
 			for (int i = 1; i < nowPage; i++) {
 				this.boardCnt += BOARD_NUM;

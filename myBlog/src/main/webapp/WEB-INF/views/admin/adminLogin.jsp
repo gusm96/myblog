@@ -65,29 +65,16 @@ body {
 
 			<div class="form-floating">
 				<input type="text" class="form-control" id="floatingInput"
-					placeholder="아이디를 입력하세요." name="admin_id"> <label
+					placeholder="아이디를 입력하세요." name="admin_id" required> <label
 					for="floatingInput">아이디</label>
 			</div>
 			<div class="form-floating">
 				<input type="password" class="form-control" id="floatingPassword"
-					placeholder="비밀번호를 입력하세요." name="admin_pw"> <label
+					placeholder="비밀번호를 입력하세요." name="admin_pw" required> <label
 					for="floatingPassword">비밀번호</label>
-			</div>
-
-			<div class="checkbox mb-3">
-				<label> <input type="checkbox" value="remember-me">
-					아이디 저장
-				</label>
 			</div>
 			<button class="w-100 btn btn-lg btn-primary loginBtn" type="submit">로그인</button>
 		</form>
 	</main>
 </body>
-<script>
-	$("#loginContainer").on("keyup", function(key) {
-		if (key.keyCode == 13) {
-			$("#loginContainer").submit();
-		}
-	})
-</script>
 </html>
