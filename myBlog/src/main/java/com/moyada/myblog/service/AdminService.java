@@ -1,4 +1,4 @@
-package com.moyada.myblog.admin.service;
+package com.moyada.myblog.service;
 
 import javax.servlet.http.HttpSession;
 
@@ -6,9 +6,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.moyada.myblog.admin.dao.AdminDao;
-import com.moyada.myblog.admin.domain.AdminDTO;
-import com.moyada.myblog.admin.exception.LoginInvalidException;
+import com.moyada.myblog.dao.AdminDao;
+import com.moyada.myblog.domain.AdminDTO;
+import com.moyada.myblog.exception.LoginInvalidException;
 
 @Service
 public class AdminService {

@@ -1,4 +1,4 @@
-package com.moyada.myblog.admin.exception;
+package com.moyada.myblog.exception;
 
 public class LoginInvalidException extends Exception {
 	public LoginInvalidException(String message) {

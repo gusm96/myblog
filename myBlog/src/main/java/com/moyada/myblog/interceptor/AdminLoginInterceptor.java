@@ -1,4 +1,4 @@
-package com.moyada.myblog.admin.interceptor;
+package com.moyada.myblog.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

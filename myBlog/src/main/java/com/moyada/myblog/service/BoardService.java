@@ -1,13 +1,13 @@
-package com.moyada.myblog.admin.service;
+package com.moyada.myblog.service;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.moyada.myblog.admin.dao.BoardDao;
-import com.moyada.myblog.admin.domain.BoardDTO;
-import com.moyada.myblog.admin.domain.BoardListDTO;
-import com.moyada.myblog.admin.domain.PaginationVO;
+import com.moyada.myblog.dao.BoardDao;
+import com.moyada.myblog.domain.BoardDTO;
+import com.moyada.myblog.domain.BoardListDTO;
+import com.moyada.myblog.domain.PaginationVO;
 
 @Service
 public class BoardService {

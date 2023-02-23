@@ -1,9 +1,9 @@
-package com.moyada.myblog.admin.dao;
+package com.moyada.myblog.dao;
 
 import java.util.List;
 
-import com.moyada.myblog.admin.domain.BoardDTO;
-import com.moyada.myblog.admin.domain.PaginationVO;
+import com.moyada.myblog.domain.BoardDTO;
+import com.moyada.myblog.domain.PaginationVO;
 
 public interface BoardDao {
 	public int uploadBoard(BoardDTO board);

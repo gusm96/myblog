@@ -3,10 +3,10 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.moyada.myblog.admin.dao.BoardDao">
+<mapper namespace="com.moyada.myblog.dao.BoardDao">
 	<!--Upload Board -->
 	<insert id="uploadBoard"
-		parameterType="com.moyada.myblog.admin.domain.BoardDTO">
+		parameterType="com.moyada.myblog.domain.BoardDTO">
 		insert into board(title, content, board_type) values
 		(#{title},#{content},#{board_type})
 	</insert>
@@ -19,14 +19,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- Pagination -->
 	<select id="selectBoard"
-		resultType="com.moyada.myblog.admin.domain.BoardDTO">
+		resultType="com.moyada.myblog.domain.BoardDTO">
 		select * from board where board_type = #{boardType} order by
 		upload_date desc limit #{boardCnt},#{BOARD_NUM}
 	</select>
 	
 	<!-- Read Board -->
 	<select id="getBoard"
-		resultType="com.moyada.myblog.admin.domain.BoardDTO">
+		resultType="com.moyada.myblog.domain.BoardDTO">
 		select * from board where bidx = #{bidx}
 		</select>
 </mapper>

@@ -1,4 +1,4 @@
-package com.moyada.myblog.admin.controller;
+package com.moyada.myblog.controller;
 
 import javax.servlet.http.HttpSession;
 
@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.moyada.myblog.admin.domain.AdminDTO;
-import com.moyada.myblog.admin.exception.LoginInvalidException;
-import com.moyada.myblog.admin.service.AdminService;
+import com.moyada.myblog.domain.AdminDTO;
+import com.moyada.myblog.exception.LoginInvalidException;
+import com.moyada.myblog.service.AdminService;
 
 
 @Controller

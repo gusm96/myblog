@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:if test="${not empty board}">
-<!DOCTYPE html>
+	<!DOCTYPE html>
 	<html>
 <head>
 <meta charset="UTF-8">
@@ -17,6 +17,13 @@
 			</div>
 			<div class="col-md-9">
 				<h1>${board.title }</h1>
+				<c:if test="${not empty adminSession}">
+					<button>
+						<a
+							href="${pageContext.request.contextPath}/management/board/${board.bidx}">수정하기</a>
+					</button>
+					</button>
+				</c:if>
 			</div>
 		</div>
 	</div>

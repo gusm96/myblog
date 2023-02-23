@@ -1,4 +1,4 @@
-package com.moyada.myblog.admin.domain;
+package com.moyada.myblog.domain;
 
 import lombok.Getter;
 import lombok.Setter;
