@@ -14,9 +14,9 @@
 
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-md-3"><%@ include
+			<div class="col-md-2"><%@ include
 					file="/WEB-INF/views/frame/sidebar.jsp"%></div>
-			<div class="col-md-9">
+			<div class="col-md-10">
 				<c:if test="${not empty board.list}">
 					<div id="board_list">
 						<table class="table table-striped">

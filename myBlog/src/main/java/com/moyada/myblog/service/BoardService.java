@@ -46,9 +46,7 @@ public class BoardService {
 	public BoardDTO getBoardDetail(int bidx) {
 		BoardDTO board = null;
 		dao = template.getMapper(BoardDao.class);
-		
 		board = dao.getBoard(bidx);
-		
 		return board;
 	}
 }

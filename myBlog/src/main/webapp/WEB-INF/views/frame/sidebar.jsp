@@ -34,11 +34,11 @@
 		data-toggle="collapse" data-target="#sidebar">
 		<span class="navbar-toggle-icon"></span>
 	</button>
-	<div class="collapse navbar-collapse" id="sidebar">
+	<div class="collapse navbar-collapse text-center" id="sidebar">
 		<div class="container-fluid">
 			<div class="row">
 				<!-- sidebar-->
-				<div class="col-lg-3 sidebar fixed-top">
+				<div class="col-lg-2 sidebar fixed-top">
 					<span
 						class="navbar-brand text-white text-center d-block mx-auto py-3 mb-4 bottom-border">Management</span>
 					<ul class="navbar-nav flex-column mt-4">
@@ -57,7 +57,7 @@
 						<li class="nav-item"><a
 							href="${pageContext.request.contextPath}/management/boards/sql?page=1"
 							class="nav-link text-white p-3 mb-2 sidebar-link"><i
-								class="fa-solid fa-user-tie text-white fa-lg mr-3"></i>SQL</a></li>
+								class="fa-solid fa-database text-white fa-lg mr-3"></i>SQL</a></li>
 					</ul>
 						<div class="col-lg-12 align-items-end">
 							<a class="text-white p-3 mb-2"
