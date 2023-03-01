@@ -1,9 +1,21 @@
 package com.moyada.myblog.service;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.apache.commons.io.FileUtils;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.moyada.myblog.dao.BoardDao;
 import com.moyada.myblog.domain.BoardDTO;
 import com.moyada.myblog.domain.BoardListDTO;
@@ -48,5 +60,26 @@ public class BoardService {
 		dao = template.getMapper(BoardDao.class);
 		board = dao.getBoard(bidx);
 		return board;
+	}
+
+	public JsonObject uploadImageFile(MultipartFile multipartFile, HttpServletRequest req) throws IOException {
+		JsonObject jo = new JsonObject();
+		String fileRoot = "C:\\Users\\gusm9\\git\\myblog\\myBlog\\src\\main\\webapp\\resources\\images\\";
+		String originalFileName = multipartFile.getOriginalFilename();
+		String extesion = originalFileName.substring(originalFileName.lastIndexOf("."));
+		String savedFileName = UUID.randomUUID() + extesion;
+		File targetFile = new File(fileRoot + savedFileName);
+		try {
+			InputStream fileStream = multipartFile.getInputStream();
+			FileUtils.copyInputStreamToFile(fileStream, targetFile); // 파일 저장
+			jo.addProperty("url", req.getContextPath() + "/resources/images/" + savedFileName);
+			jo.addProperty("fileName", savedFileName);
+			jo.addProperty("responseCode", "success");
+		} catch (IOException e) {
+			FileUtils.deleteDirectory(targetFile); // 저장된 파일 삭제
+			jo.addProperty("responseCode", "error");
+			e.printStackTrace();
+		}
+		return jo;
 	}
 }

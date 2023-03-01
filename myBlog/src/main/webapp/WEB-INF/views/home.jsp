@@ -16,7 +16,8 @@
 			<!-- anything -->
 			<div class="col-md-2"></div>
 			<!-- board list -->
-			<div class="col-md-8"></div>
+			<div class="col-md-8">
+			</div>
 			<!-- nav -->
 			<div class="col-md-2">
 				<%@ include file="/WEB-INF/views/frame/nav.jsp" %>

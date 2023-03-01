@@ -62,7 +62,6 @@ body {
 	<main class="form-signin w-100 m-auto">
 		<form id="loginContainer" method="post">
 			<h1 class="h3 mb-3 fw-normal">관리자 모드 로그인</h1>
-
 			<div class="form-floating">
 				<input type="text" class="form-control" id="floatingInput"
 					placeholder="아이디를 입력하세요." name="admin_id" required> <label

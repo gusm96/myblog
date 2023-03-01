@@ -19,7 +19,7 @@
 	<resources mapping="/resources/**" location="/resources/" />
 	<resources location="/css/" mapping="/css/**" />
 	<resources location="/js/" mapping="/js/**" />
-	<resources location="/images/" mapping="/images/**" />
+	<resources location="file:///C:/Users/gusm9/git/myblog/myBlog/src/main/webapp/resources/images/" mapping="/images/**" />
 	<resources location="/getboot/" mapping="getboot/**" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
@@ -28,6 +28,12 @@
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+
+	<beans:bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="10485760" />
+		<beans:property name="defaultEncoding" value="utf-8" />
 	</beans:bean>
 
 	<!-- 로그인 여부 확인을 위한 인터셉터 등록 -->
