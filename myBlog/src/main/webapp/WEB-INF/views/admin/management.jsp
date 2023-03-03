@@ -11,48 +11,50 @@
 <%@ include file="/WEB-INF/views/frame/pageSet.jsp"%>
 </head>
 <body class="d-flex flex-column min-vh-100">
-
-	<div class="container-fluid">
+	<div class="container">
 		<div class="row">
 			<div class="col-md-2"><%@ include
 					file="/WEB-INF/views/frame/sidebar.jsp"%></div>
 			<div class="col-md-10">
-				<c:if test="${not empty board.list}">
-					<div id="board_list">
-						<table class="table table-striped">
-							<thead>
-								<tr>
-									<th>번호</th>
-									<th>제목</th>
-									<th>작성일</th>
-								</tr>
-							</thead>
-							<tbody class="">
-								<c:forEach items="${board.list}" var="b">
-									<fmt:parseDate value="${b.upload_date}" var="parseDateValue"
-										pattern="yyyy-MM-dd HH:mm:ss" />
-									<fmt:formatDate value="${parseDateValue}" var="uploadDate"
-										pattern="yyyy-MM-dd" />
+				<div class="row"><%@include file="/WEB-INF/views/frame/header.jsp" %></div>
+				<div class="row">
+					<c:if test="${not empty board.list}">
+						<div id="board_list">
+							<table class="table table-striped">
+								<thead>
 									<tr>
-										<td>${b.bidx}</td>
-										<td><a
-											href="${pageContext.request.contextPath}/board/${b.bidx}">${b.title }</a></td>
-										<td>${uploadDate}</td>
+										<th>번호</th>
+										<th>제목</th>
+										<th>작성일</th>
 									</tr>
-								</c:forEach>
-							</tbody>
-						</table>
-						<div class="row">
-						
-							<%@include file="/WEB-INF/views/frame/pagination.jsp"%>
+								</thead>
+								<tbody class="">
+									<c:forEach items="${board.list}" var="b">
+										<fmt:parseDate value="${b.upload_date}" var="parseDateValue"
+											pattern="yyyy-MM-dd HH:mm:ss" />
+										<fmt:formatDate value="${parseDateValue}" var="uploadDate"
+											pattern="yyyy-MM-dd" />
+										<tr>
+											<td>${b.bidx}</td>
+											<td><a
+												href="${pageContext.request.contextPath}/management/board/${b.bidx}">${b.title }</a></td>
+											<td>${uploadDate}</td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+							<div class="row">
+
+								<%@include file="/WEB-INF/views/frame/pagination.jsp"%>
+							</div>
 						</div>
-					</div>
-				</c:if>
-				<c:if test="${empty board.list}">
-					<div id="board_list">
-						<h1>게시글이 존재하지 않습니다.</h1>
-					</div>
-				</c:if>
+					</c:if>
+					<c:if test="${empty board.list}">
+						<div id="board_list">
+							<h1>게시글이 존재하지 않습니다.</h1>
+						</div>
+					</c:if>
+				</div>
 			</div>
 		</div>
 	</div>

@@ -29,4 +29,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		resultType="com.moyada.myblog.domain.BoardDTO">
 		select * from board where bidx = #{bidx}
 		</select>
+		
+	<!-- LatestBoards -->
+	<select id="getLatestBoards"
+		resultType="com.moyada.myblog.domain.BoardDTO">
+		select bidx, title, content, upload_date from board order by upload_date desc limit 0, 10
+		</select>
 </mapper>

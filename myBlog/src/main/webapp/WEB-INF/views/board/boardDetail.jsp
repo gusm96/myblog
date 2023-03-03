@@ -1,39 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:if test="${not empty board}">
-	<!DOCTYPE html>
-	<html>
-<head>
-<meta charset="UTF-8">
-<title>${board.title}</title>
-<%@ include file="/WEB-INF/views/frame/pageSet.jsp"%>
-</head>
-<body>
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-md-3">
-				<%@ include file="/WEB-INF/views/frame/sidebar.jsp"%>
-			</div>
-			<div class="col-md-9">
-				<h1>${board.title }</h1>
-				<c:if test="${not empty adminSession}">
-					<button>
-						<a
-							href="${pageContext.request.contextPath}/management/board/${board.bidx}">수정하기</a>
-					</button>
-					</button>
-				</c:if>
-			</div>
-		</div>
-	</div>
-
-</body>
-	</html>
-</c:if>
-<c:if test="${empty board }">
-	<script>
-		alert("해당 게시글이 존재하지 않습니다.");
-		location.go(-1);
-	</script>
-</c:if>
+<div>
+	<h1 class="text-center">${board.title }</h1>
+	<hr>
+	<div class="content">${board.content}</div>
+	<button class ="backBtn">뒤로가기</button>
+	<c:if test="${not empty admin}">
+		<a
+			href="${pageContext.request.contextPath}/management/board/${board.bidx}"><button>수정하기</button></a>
+	</c:if>
+</div>
+<script>
+	$(".backBtn").click(function () {
+		history.go(-1);
+	})
+</script>

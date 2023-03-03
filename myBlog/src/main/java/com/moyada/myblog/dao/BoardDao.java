@@ -14,4 +14,6 @@ public interface BoardDao {
 
 	public BoardDTO getBoard(int bidx);
 
+	public List<BoardDTO> getLatestBoards();
+
 }

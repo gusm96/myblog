@@ -59,11 +59,11 @@
 							class="nav-link text-white p-3 mb-2 sidebar-link"><i
 								class="fa-solid fa-database text-white fa-lg mr-3"></i>SQL</a></li>
 					</ul>
-						<div class="col-lg-12 align-items-end">
-							<a class="text-white p-3 mb-2"
-								href="${pageContext.request.contextPath}/logout/admin" style="text-decoration:none">관리자 모드
-								종료</a>
-						</div>
+					<div class="col-lg-12 align-items-end">
+						<a class="text-white p-3 mb-2"
+							href="${pageContext.request.contextPath}/logout/admin"
+							style="text-decoration: none">관리자 모드 종료</a>
+					</div>
 				</div>
 			</div>
 		</div>

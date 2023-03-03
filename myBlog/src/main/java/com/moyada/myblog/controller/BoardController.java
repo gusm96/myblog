@@ -14,7 +14,7 @@ import com.moyada.myblog.service.BoardService;
 public class BoardController {
 	@Autowired
 	BoardService service;
-	
+
 	@GetMapping("{bidx}")
 	public String getBoardDetail(@PathVariable("bidx") int bidx, Model model) {
 		model.addAttribute("board", service.getBoardDetail(bidx));

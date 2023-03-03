@@ -3,6 +3,7 @@ package com.moyada.myblog.service;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -81,5 +82,12 @@ public class BoardService {
 			e.printStackTrace();
 		}
 		return jo;
+	}
+
+	public List<BoardDTO> getLatestBoards() {
+		List<BoardDTO> list = null;
+		dao = template.getMapper(BoardDao.class);
+		list = dao.getLatestBoards();
+		return list;
 	}
 }

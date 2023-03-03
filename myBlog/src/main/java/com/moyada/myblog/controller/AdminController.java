@@ -61,7 +61,7 @@ public class AdminController {
 	@GetMapping("/board/{bidx}")
 	public String getBoardEdit(@PathVariable("bidx") int bidx, Model model) {
 		model.addAttribute("board", service.getBoardDetail(bidx));
-		return "board/boardDetail";
+		return "admin/adminBoardDetail";
 	}
 
 }
