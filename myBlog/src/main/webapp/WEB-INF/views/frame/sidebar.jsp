@@ -60,12 +60,38 @@
 								class="fa-solid fa-database text-white fa-lg mr-3"></i>SQL</a></li>
 					</ul>
 					<div class="col-lg-12 align-items-end">
-						<a class="text-white p-3 mb-2"
+						<%-- <a class="text-white p-3 mb-2"
 							href="${pageContext.request.contextPath}/logout/admin"
-							style="text-decoration: none">관리자 모드 종료</a>
+							style="text-decoration: none">관리자 모드 종료</a> --%>
+						<button type="button" class="btn btn-primary"
+							data-bs-toggle="modal" data-bs-target=".modal">관리자 모드 종료</button>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </nav>
+
+<div class="modal" tabindex="-1">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">관리자 모드 종료</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal"
+					aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<p>정말로 관리자 모드를 종료하시겠습니까?</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary"
+					data-bs-dismiss="modal">취소</button>
+				<button type="button" class="btn btn-primary">
+					<a class="text-white"
+						href="${pageContext.request.contextPath}/logout/admin"
+						style="text-decoration: none">종료</a>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

@@ -18,6 +18,6 @@ public class BoardController {
 	@GetMapping("{bidx}")
 	public String getBoardDetail(@PathVariable("bidx") int bidx, Model model) {
 		model.addAttribute("board", service.getBoardDetail(bidx));
-		return "board/boardDetail";
+		return "board/boardView";
 	}
 }

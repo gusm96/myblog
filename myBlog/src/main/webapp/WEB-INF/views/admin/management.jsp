@@ -15,8 +15,9 @@
 		<div class="row">
 			<div class="col-md-2"><%@ include
 					file="/WEB-INF/views/frame/sidebar.jsp"%></div>
-			<div class="col-md-10">
-				<div class="row"><%@include file="/WEB-INF/views/frame/header.jsp" %></div>
+			<div class="col-md-10" style="margin-top: 50px;">
+				<div class="row"><%@include
+						file="/WEB-INF/views/frame/header.jsp"%></div>
 				<div class="row">
 					<c:if test="${not empty board.list}">
 						<div id="board_list">
@@ -54,6 +55,9 @@
 							<h1>게시글이 존재하지 않습니다.</h1>
 						</div>
 					</c:if>
+				</div>
+				<div class="row">
+					<%@include file="/WEB-INF/views/frame/footer.jsp"%>
 				</div>
 			</div>
 		</div>

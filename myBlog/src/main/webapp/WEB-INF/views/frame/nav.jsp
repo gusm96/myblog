@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<div>
 	<nav class="navbar-default navbar-static">
 		<div class="container-fluid text-center ">
 			<ul class="nav flex-column">
@@ -36,4 +35,3 @@
 			</ul>
 		</div>
 	</nav>
-</div>

@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div>
-	<h1 class="text-center">${board.title }</h1>
+	<h1 class="text-left">${board.title }</h1>
 	<hr>
 	<div class="content">${board.content}</div>
 	<button class ="backBtn">뒤로가기</button>
