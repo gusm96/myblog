@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,7 +22,7 @@ import com.moyada.myblog.domain.BoardDTO;
 import com.moyada.myblog.service.BoardService;
 
 @Controller
-@RequestMapping("/management")
+@RequestMapping("/manage")
 public class AdminController {
 	@Autowired
 	BoardService service;
@@ -31,26 +32,37 @@ public class AdminController {
 		return "admin/management";
 	}
 
-	@GetMapping("/boards/{type}")
+	@GetMapping("/board/{type}")
 	public String getBoardList(@PathVariable("type") String type,
 			@RequestParam(value = "page", defaultValue = "1") int page, Model model) {
 		model.addAttribute("board", service.getBoardList(type, page));
 		return "admin/management";
 	}
 
-	@GetMapping("/board/upload")
-	public String getUploadBoard() {
-		return "admin/uploadBoard";
+	@GetMapping("/newpost")
+	public String getNewPost() {
+		return "admin/newpost";
 	}
 
-	@PostMapping("/board/upload")
-	public String postUploadBoard(BoardDTO board, Model model) {
+	@PostMapping("/newpost")
+	public String postNewPost(BoardDTO board, Model model) {
 		model.addAttribute("result", service.uploadBoard(board));
 		return "admin/uploadBoardComplete";
 	}
+	
+	@GetMapping("/newpost/{bidx}")
+	public String getEditPost(@PathVariable("bidx") int bidx, Model model) {
+		model.addAttribute("post", service.getBoardDetail(bidx));
+		return "admin/newpost";
+	}
+	@PostMapping("/newpost/{bidx}")
+	public String postEditPost(BoardDTO board) {
+		return service.editPost(board);
+	}
+	
 
 	// 게시글 File 업로드
-	@PostMapping("/board/uploadImageFile")
+	@PostMapping("/newpost/uploadImageFile")
 	@ResponseBody
 	public JsonObject uploadImageFile(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest req)
 			throws IOException {
@@ -58,8 +70,8 @@ public class AdminController {
 	}
 
 	// 게시글 수정 페이지
-	@GetMapping("/board/{bidx}")
-	public String getBoardEdit(@PathVariable("bidx") int bidx, Model model) {
+	@GetMapping("/board/{type}/{bidx}")
+	public String getBoardEdit(@PathVariable("type") String type, @PathVariable("bidx") int bidx, Model model) {
 		model.addAttribute("board", service.getBoardDetail(bidx));
 		return "admin/adminBoardDetail";
 	}

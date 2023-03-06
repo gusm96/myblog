@@ -28,7 +28,7 @@ public class AdminService {
 		}
 		
 		session.setAttribute("admin", admin);
-		url = "redirect:/management";
+		url = "redirect:/manage";
 		
 		return url;
 	}

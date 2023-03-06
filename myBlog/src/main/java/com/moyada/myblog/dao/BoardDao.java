@@ -16,4 +16,6 @@ public interface BoardDao {
 
 	public List<BoardDTO> getLatestBoards();
 
+	public int editPost(BoardDTO post);
+
 }

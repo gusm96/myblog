@@ -35,4 +35,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		resultType="com.moyada.myblog.domain.BoardDTO">
 		select bidx, title, content, upload_date from board order by upload_date desc limit 0, 20
 		</select>
+		
+	<!-- Edit Post -->
+	<update id="editPost">
+		update board set title=#{title}, content=#{content}, board_type=#{board_type}, edit_date=#{edit_date} where bidx=#{bidx}
+	</update>
 </mapper>

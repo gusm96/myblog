@@ -3,11 +3,12 @@ package com.moyada.myblog.service;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -15,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.moyada.myblog.dao.BoardDao;
 import com.moyada.myblog.domain.BoardDTO;
@@ -89,5 +89,21 @@ public class BoardService {
 		dao = template.getMapper(BoardDao.class);
 		list = dao.getLatestBoards();
 		return list;
+	}
+
+	public String editPost(BoardDTO post) {
+		String url = "";
+		LocalDateTime now = LocalDateTime.now();
+		DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		String nowDate = now.format(df);
+		post.setEdit_date(nowDate);
+		int result = dao.editPost(post);
+		
+		if(result > 0) {
+			url = "redirect:/manage/board/"+post.getBoard_type()+"/"+post.getBidx();
+		}else {
+			url = "망했다";
+		}
+		return url;
 	}
 }

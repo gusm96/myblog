@@ -8,7 +8,7 @@
 	<button class ="backBtn">뒤로가기</button>
 	<c:if test="${not empty admin}">
 		<a
-			href="${pageContext.request.contextPath}/management/board/${board.bidx}"><button>수정하기</button></a>
+			href="${pageContext.request.contextPath}/manage/newpost/${board.bidx}"><button>수정하기</button></a>
 	</c:if>
 </div>
 <script>

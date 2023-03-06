@@ -42,7 +42,7 @@
 
 	<interceptors>
 		<interceptor>
-			<mapping path="/management/**" />
+			<mapping path="/manage/**" />
 			<beans:ref bean="adminLoginInterceptor" />
 		</interceptor>
 	</interceptors>

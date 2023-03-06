@@ -38,7 +38,7 @@
 										<tr>
 											<td>${b.bidx}</td>
 											<td><a
-												href="${pageContext.request.contextPath}/management/board/${b.bidx}">${b.title }</a></td>
+												href="${b.board_type}/${b.bidx}">${b.title }</a></td>
 											<td>${uploadDate}</td>
 										</tr>
 									</c:forEach>
