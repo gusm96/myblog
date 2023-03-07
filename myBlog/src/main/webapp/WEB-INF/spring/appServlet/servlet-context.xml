@@ -19,7 +19,8 @@
 	<resources mapping="/resources/**" location="/resources/" />
 	<resources location="/css/" mapping="/css/**" />
 	<resources location="/js/" mapping="/js/**" />
-	<resources location="file:///C:/Users/gusm9/git/myblog/myBlog/src/main/webapp/resources/images/" mapping="/images/**" />
+	<resources location="/images/" mapping="/images/**" />
+	<!-- file:///C:/Users/gusm9/git/myblog/myBlog/src/main/webapp/resources -->
 	<resources location="/getboot/" mapping="getboot/**" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 

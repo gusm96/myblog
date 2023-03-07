@@ -45,7 +45,7 @@ pageEncoding="UTF-8"%>
         <div class="col-lg-2 sidebar fixed-top">
           <span
             class="navbar-brand text-white text-center d-block mx-auto py-3 mb-4 bottom-border"
-            >Management</span
+            ><a href="${pageContext.request.contextPath}/manage" class="text-white">Management</a></span
           >
           <ul class="navbar-nav flex-column mt-4">
             <li class="nav-item">

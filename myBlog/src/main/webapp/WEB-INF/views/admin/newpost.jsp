@@ -54,8 +54,12 @@
 										contentType : false,
 										processData : false,
 										success : function(data) {
-											$(editor).summernote("insertImage",
-													data.url);
+											setTimeout(function() {
+												$(editor)
+														.summernote(
+																"insertImage",
+																data.url);
+											}, 4000); // 이미지 업로드 시간 문제 때문에 임시로 처리.. 배포시 수정
 										},
 									});
 						}

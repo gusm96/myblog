@@ -98,10 +98,10 @@ public class BoardService {
 		String nowDate = now.format(df);
 		post.setEdit_date(nowDate);
 		int result = dao.editPost(post);
-		
-		if(result > 0) {
-			url = "redirect:/manage/board/"+post.getBoard_type()+"/"+post.getBidx();
-		}else {
+
+		if (result > 0) {
+			url = "redirect:/manage/" + post.getBidx();
+		} else {
 			url = "망했다";
 		}
 		return url;

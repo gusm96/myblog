@@ -19,8 +19,10 @@
 				<div class="row"><%@include
 						file="/WEB-INF/views/frame/header.jsp"%></div>
 				<div class="row">
-					<c:if test="${not empty board.list}">
+					<c:if test="${not empty board}">
 						<div id="board_list">
+							<h4>최신 게시글</h4>
+							<hr>
 							<table class="table table-striped">
 								<thead>
 									<tr>
@@ -30,29 +32,24 @@
 									</tr>
 								</thead>
 								<tbody class="">
-									<c:forEach items="${board.list}" var="b">
+									<c:forEach items="${board}" var="b">
 										<fmt:parseDate value="${b.upload_date}" var="parseDateValue"
 											pattern="yyyy-MM-dd HH:mm:ss" />
 										<fmt:formatDate value="${parseDateValue}" var="uploadDate"
 											pattern="yyyy-MM-dd" />
 										<tr>
 											<td>${b.bidx}</td>
-											<td><a
-												href="${pageContext.request.contextPath}/manage/${b.bidx}">${b.title }</a></td>
+											<td><a href="${pageContext.request.contextPath}/manage/${b.bidx}">${b.title }</a></td>
 											<td>${uploadDate}</td>
 										</tr>
 									</c:forEach>
 								</tbody>
 							</table>
-							<div class="row">
-
-								<%@include file="/WEB-INF/views/frame/pagination.jsp"%>
-							</div>
 						</div>
 					</c:if>
-					<c:if test="${empty board.list}">
+					<c:if test="${empty board}">
 						<div id="board_list">
-							<h1>게시글이 존재하지 않습니다.</h1>
+							<h1>최신 게시글이 존재하지 않습니다.</h1>
 						</div>
 					</c:if>
 				</div>

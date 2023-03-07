@@ -28,8 +28,9 @@ public class AdminController {
 	BoardService service;
 
 	@GetMapping
-	public String getManagement() {
-		return "admin/management";
+	public String getManagement(Model model) {
+		model.addAttribute("board", service.getLatestBoards());
+		return "admin/manageHome";
 	}
 
 	@GetMapping("/board/{type}")
@@ -49,17 +50,17 @@ public class AdminController {
 		model.addAttribute("result", service.uploadBoard(board));
 		return "admin/uploadBoardComplete";
 	}
-	
+
 	@GetMapping("/newpost/{bidx}")
 	public String getEditPost(@PathVariable("bidx") int bidx, Model model) {
 		model.addAttribute("post", service.getBoardDetail(bidx));
 		return "admin/newpost";
 	}
+
 	@PostMapping("/newpost/{bidx}")
 	public String postEditPost(BoardDTO board) {
 		return service.editPost(board);
 	}
-	
 
 	// 게시글 File 업로드
 	@PostMapping("/newpost/uploadImageFile")
@@ -70,8 +71,8 @@ public class AdminController {
 	}
 
 	// 게시글 수정 페이지
-	@GetMapping("/board/{type}/{bidx}")
-	public String getBoardEdit(@PathVariable("type") String type, @PathVariable("bidx") int bidx, Model model) {
+	@GetMapping("/{bidx}")
+	public String getBoardEdit(@PathVariable("bidx") int bidx, Model model) {
 		model.addAttribute("board", service.getBoardDetail(bidx));
 		return "admin/adminBoardDetail";
 	}
